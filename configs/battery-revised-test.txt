@@ -1,4 +1,4 @@
-# Recorded battery settings from flight log 12_43_50.ulg
+# Battery monitoring settings | revised controller test | 14 November 2026
 # Historical values only, not a recommended configuration
 BAT1_N_CELLS=6
 BAT1_CAPACITY=10800

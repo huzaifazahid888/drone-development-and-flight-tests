@@ -1,4 +1,4 @@
-# PX4_FMU_V6X / V6X008 - 12_43_50.ulg - 2026-11-14
+# Revised controller test | 14 November 2026 | PX4 FMUv6X
 # Extracted historical parameters. NOT a flight-ready configuration.
 MC_ROLLRATE_K=1.4
 MC_ROLLRATE_P=0.102407

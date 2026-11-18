@@ -2,13 +2,13 @@
 
 This was one of the more time-consuming parts of the PX4 work. I wanted to understand whether the vibration seen in the logs was actual motion, motor/propeller excitation, or noise passing into the control loop.
 
-The measurements below come from `09_44_48.ulg` and `12_10_01.ulg`, both recorded on 4 November 2026. They were analysed using the high-rate `sensor_gyro_fifo` data and the onboard ESC reports. The flights used different modes, so this is a diagnostic comparison and not a controlled A/B tuning test.
+The measurements below come from two tests on 4 November 2026: an initial Acro test and a longer Stabilized test. I analysed high-rate gyro samples and onboard ESC reports. Since the tests used different flight modes, the results are useful for diagnosis but do not form a controlled A/B tuning comparison.
 
 ## What we found in the raw gyro
 
 The main raw gyro energy was around **130 to 150 Hz**. A separate band was visible around **350 to 400 Hz**. The strong lower-frequency band was close to the motor shaft frequencies calculated from reported RPM.
 
-| Axis | 09_44_48 peak | 12_10_01 peak | 100–180 Hz band-power ratio, second/first |
+| Axis | Initial Acro peak | Stabilized peak | 100–180 Hz band-power ratio, second/first |
 | --- | ---: | ---: | ---: |
 | Roll | 132.4 Hz | 137.9 Hz | 20.7× |
 | Pitch | 131.6 Hz | 132.0 Hz | 3.8× |
@@ -22,7 +22,7 @@ There was **no gyro clipping** in either log. The short log had two acceleromete
 
 The ESC status flags showed four online channels, but ESC 2 and ESC 3 had missing or implausible RPM reports while motor commands were substantial. For a diagnostic check, we counted reports below 1,500 RPM when the corresponding normalized motor command exceeded 0.40.
 
-| ESC channel | 09_44_48 | 12_10_01 |
+| ESC channel | Initial Acro | Stabilized |
 | --- | ---: | ---: |
 | 1 | 0.01% | 0.56% |
 | 2 | 19.59% | 10.40% |
@@ -31,13 +31,13 @@ The ESC status flags showed four online channels, but ESC 2 and ESC 3 had missin
 
 Some RPM samples also had unrealistic spikes. These values should not be treated as the motors actually stopping, because the drone kept flying and the motor commands remained active. The likely area to investigate is ESC telemetry or decoding, including wiring, firmware, signal quality, output mapping and motor pole count.
 
-The two 4 November logs had `DSHOT_BIDIR_EN=1`. The 14 November log later recorded `DSHOT_BIDIR_EN=0` and `DSHOT_TEL_CFG=103`. That is a configuration difference, not proof that the earlier RPM issue was fixed.
+The two earlier tests had `DSHOT_BIDIR_EN=1`. The revised controller test recorded `DSHOT_BIDIR_EN=0` and `DSHOT_TEL_CFG=103`. That is a configuration difference, not proof that the earlier RPM issue was fixed.
 
 ## What this means for notch filtering
 
 A fixed notch at 60 Hz would not be supported by these spectra. The observed strong band was closer to 130–150 Hz and can move with motor speed. A dynamic notch may help a moving vibration peak, but the tracking source must be reliable and its actual performance must be checked in a log.
 
-The 4 November snapshots had `IMU_GYRO_DNF_EN=0`, `IMU_GYRO_CUTOFF=40` Hz and `IMU_DGYRO_CUTOFF=20` Hz. The 14 November snapshot had the dynamic notch enabled and the cutoffs raised to 60 Hz and 30 Hz. We have not yet completed the same high-rate spectral comparison for that later configuration, so I cannot claim that it removed the vibration.
+The earlier controller configurations had `IMU_GYRO_DNF_EN=0`, `IMU_GYRO_CUTOFF=40` Hz and `IMU_DGYRO_CUTOFF=20` Hz. The revised controller configuration had the dynamic notch enabled and the cutoffs raised to 60 Hz and 30 Hz. We have not yet completed the same high-rate spectral comparison for that later configuration, so I cannot claim that it removed the vibration.
 
 ## Controller tracking from the 4 November flights
 

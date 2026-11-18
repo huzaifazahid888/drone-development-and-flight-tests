@@ -1,87 +1,64 @@
-# Drone Development and Flight Tests
+# Autonomous UAV System
 
-I started working with a small quadcopter to understand the hardware and basic flight configuration. After the first tests, I moved to a mid-size drone and then to a larger quadcopter with a frame measuring about 736 mm × 615 mm. I made this repository to keep these three stages together, along with the actual hardware photos, flight videos, PX4 configurations and results from testing.
+This repository covers my work on quadcopter development and flight testing. I started with a small drone using Pixhawk 2.4.8, then moved to a mid-size platform with an STM32H7-based Pixhawk controller. The current stage is a larger 736 × 615 mm quadcopter, where I am working more deeply on PX4 flight control, sensor integration and flight-data analysis.
 
-My work here includes motor and ESC configuration, Pixhawk and PX4 setup, QGroundControl calibration, GNSS and EKF2, PID and filter tuning, battery monitoring, and flight log analysis. I have also been working on a sight/camera system where video and MAVLink telemetry use the same RF link.
-
-This is an ongoing project. Some tests are completed and some problems still need checking. I will add the original photos and flight videos as I sort them.
-
-## Development photos
-
-The three photos below show how the drone hardware changed during development. I kept the original components and wiring visible while preparing white-background images for the repository.
-
-| Small quadcopter | Mid-size quadcopter | Current large quadcopter |
-| :---: | :---: | :---: |
-| ![Small quadcopter](media/photos/small-drone-overview.jpg) | ![Mid-size quadcopter](media/photos/mid-size-drone-overview.jpg) | ![Large quadcopter](media/photos/large-drone-overview.jpg) |
-| Early prototype | Pixhawk-based development and sensor integration | 736 × 615 mm platform |
+The work includes hardware assembly, motor and ESC setup, PX4 and QGroundControl configuration, GNSS/EKF2, PID and gyro-filter tuning, power monitoring and RF video/telemetry. I am keeping the testing results together with the problems I found and the changes that still need validation.
 
 ## Drone development
 
-| Stage | Drone | Work |
-| --- | --- | --- |
-| 1 | [Small quadcopter](vehicles/01-small-drone/README.md) | Initial setup, motor directions, calibration and basic flights |
-| 2 | [Mid-size quadcopter](vehicles/02-mid-size-drone/README.md) | Next airframe, configuration and testing |
-| 3 | [Large quadcopter, 736 × 615 mm](vehicles/03-large-drone/README.md) | Current work with PX4, battery/ESC logs, GNSS and video telemetry |
+| First prototype | Mid-size platform | Current large quadcopter |
+| :---: | :---: | :---: |
+| ![First prototype](media/photos/small-drone-overview.jpg) | ![Mid-size drone](media/photos/mid-size-drone-overview.jpg) | ![Large quadcopter](media/photos/large-drone-overview.jpg) |
+| [Pixhawk 2.4.8](vehicles/01-small-drone/README.md) | [STM32H7-based Pixhawk](vehicles/02-mid-size-drone/README.md) | [736 × 615 mm test platform](vehicles/03-large-drone/README.md) |
 
-**Photos:** The three overview photos are now added. I will add more detailed hardware pictures and flight videos after sorting the original files.
+The first drone helped me understand motor direction, actuator mapping, calibration and basic flight behaviour. The later platforms gave me more room to work on sensor integration, control performance and testing over longer distances. The controller upgrade provides more processing capability, while actual flight range also depends on the communication system, antennas, battery and aircraft setup.
 
-## Work and testing
+## Flight control and tuning
 
-The first work was mostly hardware assembly and learning how the flight controller handles motor order, direction, frame setup and sensor calibration. On the later drones I started spending more time on GNSS position estimation, the difference between the antenna and the centre of gravity, vibration, rate and attitude control and checking ULog files after flights.
+I spent a lot of time understanding the PX4 cascaded control structure before changing parameters. I worked with the attitude and angular-rate loops, compared requested and measured body rates, and studied how gyro filtering, motor vibration and ESC feedback affect control.
 
-On the current large drone I am also looking at battery voltage sag, current measurements, ESC temperatures, and interruptions in the live video sent over the same RF link as telemetry. I have kept these issues in the documentation since they are still useful parts of the testing.
+I compared recorded controller settings from three tests on the larger PX4 platform. The roll and pitch rate gain multipliers increased from 1.0 to 1.1 and later to 1.4. The later configuration also used different D gains, attitude gains and gyro filters. These are recorded changes, not proof that every adjustment improved the response. The tests were not all performed in the same flight mode.
 
-## PX4 control and tuning findings
+The main findings from the flight data were:
 
-A large part of this project was understanding PX4's cascaded attitude and rate controllers and learning how to tune them using actual flight data. I checked PID gains, gyro filtering, motor RPM telemetry, GNSS/EKF2 settings and how these affect the behaviour of the drone. I also kept the problems we found, including strong motor-frequency vibration and unreliable RPM reports on some ESC channels.
+- **Gyro vibration:** A strong vibration band appeared near 130–150 Hz, close to reported motor shaft frequencies. This led me to investigate mechanical vibration and notch filtering instead of choosing an arbitrary filter frequency.
+- **ESC RPM feedback:** Two channels produced missing or implausible RPM values while the motors were commanded to run. I am checking telemetry reliability before using RPM feedback to judge dynamic filtering.
+- **Power and temperature:** A later flight lasted about five minutes airborne and reported around 6.64 Ah consumed, noticeable voltage sag and one ESC temperature channel reaching about 92°C. The electrical calibration and temperature reading still need independent checks.
+- **State estimation:** I investigated the GNSS antenna lever arm and the effect of battery placement on the centre of gravity. I am checking the measured mounting offsets against the saved EKF2 settings.
+- **RF video and telemetry:** I am investigating intermittent video interruptions on a link shared with MAVLink telemetry.
 
-The [parameter history](docs/px4-tuning-history.md) contains real settings extracted from three FMUv6X logs recorded on 4 and 14 November 2026. It shows the changes in rate gains, D terms, attitude gains, gyro cutoffs, dynamic notch settings, DShot telemetry and GNSS offsets. These are historical records, not universal tuning recommendations.
+These results come from onboard flight measurements. I have kept the limitations and open checks in the technical pages rather than presenting an unverified performance claim.
 
-[How PX4 control works](docs/px4-control-system.md) · [Actual parameter changes](docs/px4-tuning-history.md) · [Gyro vibration and ESC RPM findings](docs/px4-gyro-filter-investigation.md) · [Tuning workflow](docs/tuning-and-logs.md)
+[PX4 control architecture](docs/px4-control-system.md) · [Controller and filter settings](docs/px4-tuning-history.md) · [Vibration and ESC feedback](docs/px4-gyro-filter-investigation.md) · [Testing method](docs/tuning-and-logs.md)
 
-## Flight videos and test records
+## Flight tests and media
 
-I will add actual videos from different flights and ranges. Each flight will have its own record with the drone used, test conditions and the result. I will only write a flight distance or range when it has been checked from a record or confirmed separately.
+The [flight-test records](docs/flight-records/README.md) describe the purpose, flight mode, measurements and findings of each test in a way that can be understood without opening a raw log. The raw PX4 recordings are kept private because they may contain position and system information.
 
-| Test | Drone | Video filename to add | Record |
-| --- | --- | --- | --- |
-| Initial flight tests | Small | `small-drone-flight-01.mp4` | [Small drone](vehicles/01-small-drone/README.md) |
-| Development flights | Mid-size | `mid-size-drone-flight-01.mp4` | [Mid-size drone](vehicles/02-mid-size-drone/README.md) |
-| Large drone flight | Large | `large-drone-flight-01.mp4` | [Large drone](vehicles/03-large-drone/README.md) |
-| PX4 log `12_43_50.ulg` | Large, if confirmed from the matching flight | `12_43_50-flight.mp4` | [Log analysis](docs/flight-records/12_43_50.md) |
+I have added overview photos of the three drones. I will add the matching flight videos, confirmed test distances and further hardware photos as I organize them. No flight range is claimed here without a verified record.
 
-These video filenames are reserved for files I will upload later. They are not links to videos that already exist.
+[Photos](media/photos/README.md) · [Flight videos](media/videos/README.md) · [Test records](docs/flight-records/README.md)
 
-[Photo names](media/photos/README.md) · [Video names](media/videos/README.md) · [Flight record template](docs/flight-records/TEMPLATE.md)
+## Technical documentation
 
-## Documentation
-
-- [Hardware setup](docs/hardware.md)
-- [PX4 and QGroundControl calibration](docs/setup-and-calibration.md)
-- [GNSS and EKF2](docs/gnss-and-ekf2.md)
-- [PX4 controller architecture](docs/px4-control-system.md)
-- [PX4 tuning and parameter history](docs/px4-tuning-history.md)
-- [Gyro filtering, vibration and ESC RPM investigation](docs/px4-gyro-filter-investigation.md)
-- [PID tuning workflow and flight logs](docs/tuning-and-logs.md)
-- [Battery and power measurements](docs/battery-and-power.md)
-- [ESC temperature checks](docs/esc-temperature.md)
-- [RF video and telemetry](docs/video-and-telemetry.md)
-- [Preflight checklist](docs/preflight-checklist.md)
-- [Next work](docs/next-work.md)
+| Area | Documentation |
+| --- | --- |
+| Hardware and setup | [Hardware](docs/hardware.md), [PX4 calibration](docs/setup-and-calibration.md), [GNSS/EKF2](docs/gnss-and-ekf2.md) |
+| Control and analysis | [Controller architecture](docs/px4-control-system.md), [Tuning history](docs/px4-tuning-history.md), [Filtering investigation](docs/px4-gyro-filter-investigation.md) |
+| Flight systems | [Battery](docs/battery-and-power.md), [ESC temperature](docs/esc-temperature.md), [RF video and telemetry](docs/video-and-telemetry.md) |
+| Testing | [Flight records](docs/flight-records/README.md), [Preflight checks](docs/preflight-checklist.md), [Next work](docs/next-work.md) |
 
 ## Repository structure
 
 ```text
-vehicles/           Small, mid-size and large drone records
-docs/               Setup, calibration, testing and flight notes
-configs/            Recorded parameter information
-media/photos/       Real photos to be uploaded
-media/videos/       Flight videos and video links to be uploaded
-logs/               Notes about raw PX4 ULog files
-scripts/            Log-analysis utilities
-assets/plots/        Figures from verified flight data
+vehicles/        Separate hardware and development stages
+docs/            Control, integration, tuning and test findings
+configs/         Selected historical PX4 parameter snapshots
+media/photos/    Drone hardware photographs
+media/videos/    Planned flight video records and links
+logs/            Raw-data handling and privacy notes
+scripts/         Tools for checking PX4 flight data
+assets/plots/    Verified analysis plots as they are prepared
 ```
 
-## Notes
-
-All the hardware and parameters here belong to my own test setups. I am keeping the three drones separate, because a value that works on one frame is not necessarily right for another. I am also keeping the parts that I have not confirmed marked as such, rather than adding guessed specifications.
+This is an ongoing engineering project. I am keeping measured results separate from assumptions and will update the documentation when further tests confirm the changes.

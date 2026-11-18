@@ -1,14 +1,11 @@
-# Configurations
+# PX4 configuration snapshots
 
-This folder keeps parameters or parameter notes for the exact drone and test they came from.
+These are selected parameters recorded during three flight tests of the large PX4 quadcopter. I keep them separate because the controller and filter settings changed during development.
 
-I will not combine the settings of the small, mid-size and large drones. The text file here records only the battery parameter values extracted from the recent FMUv6X log. It is not a full flight-ready PX4 parameter export.
+| Test | Recorded settings |
+| --- | --- |
+| Initial Acro test, 4 Nov 2026 | [Controller and filters](control-initial-acro.txt) |
+| Stabilized test, 4 Nov 2026 | [Controller and filters](control-stabilized-test.txt) |
+| Revised controller test, 14 Nov 2026 | [Controller and filters](control-revised-test.txt), [Battery monitoring](battery-revised-test.txt) |
 
-I will add complete exports after checking the model and removing any information that should not be published.
-## Control and filter snapshots
-
-- [09_44_48, 4 Nov 2026](fmuv6x-control-09_44_48.txt)
-- [12_10_01, 4 Nov 2026](fmuv6x-control-12_10_01.txt)
-- [12_43_50, 14 Nov 2026](fmuv6x-control-12_43_50.txt)
-
-These are selected values extracted from the ULog parameter records, rounded for reading. They are **not complete PX4 parameter exports** and must not be loaded as flight-ready settings. The explanation and comparison are in [the parameter history](../docs/px4-tuning-history.md).
+The values are extracted historical snapshots, **not full PX4 parameter exports or flight-ready presets**. The reason for comparing them and the limitations of the tests are explained in [the tuning history](../docs/px4-tuning-history.md). I will add verified complete exports after reviewing them for private system information.

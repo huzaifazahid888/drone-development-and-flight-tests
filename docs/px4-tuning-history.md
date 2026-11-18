@@ -1,18 +1,18 @@
-# PX4 parameter history from actual flight logs
+# PX4 controller tuning and parameter history
 
-I wanted to keep the real values from the flights instead of writing a tuning guide with guessed numbers. The table below was extracted from the parameter records inside three PX4 ULog files. It shows how the configuration changed while we were testing the large drone.
+I kept the actual controller settings from three recorded flight tests so I could review how the configuration changed during development. These measurements came from the PX4 onboard parameter records of the large quadcopter, not from a generic tuning preset.
 
-**All three logs report** `PX4_FMU_V6X` with subtype `V6X008`. This is not the older Pixhawk 2.4.8 / FMUv3 setup used in earlier learning stages.
+All three tests used the PX4 FMUv6X controller family. This is separate from the Pixhawk 2.4.8 hardware used during the first drone stage.
 
-| Log | Recorded date (UTC) | Flight notes |
+| Test | Date (UTC) | Flight context |
 | --- | --- | --- |
-| `09_44_48.ulg` | 4 Nov 2026 | Acro, about 107 s of logging |
-| `12_10_01.ulg` | 4 Nov 2026 | Stabilized, about 396 s of logging |
-| `12_43_50.ulg` | 14 Nov 2026 | Later flight, about 305 s airborne |
+| Initial Acro test | 4 Nov 2026 | About 107 s of recorded data |
+| Stabilized control test | 4 Nov 2026 | About 396 s of recorded data |
+| Revised controller test | 14 Nov 2026 | About 305 s airborne |
 
 ## Rate and attitude controller settings
 
-| Parameter | 09_44_48 | 12_10_01 | 12_43_50 |
+| Parameter | Initial Acro | Stabilized | Revised |
 | --- | ---: | ---: | ---: |
 | `MC_ROLLRATE_K` | 1.0 | 1.1 | 1.4 |
 | `MC_PITCHRATE_K` | 1.0 | 1.1 | 1.4 |
@@ -34,7 +34,7 @@ The yaw rate P value stayed at about 0.178819, yaw D at about 0.000568, and all 
 
 ## Gyro filtering and ESC interface
 
-| Parameter | 09_44_48 | 12_10_01 | 12_43_50 |
+| Parameter | Initial Acro | Stabilized | Revised |
 | --- | ---: | ---: | ---: |
 | `IMU_GYRO_CUTOFF` (Hz) | 40 | 40 | 60 |
 | `IMU_DGYRO_CUTOFF` (Hz) | 20 | 20 | 30 |
@@ -53,7 +53,7 @@ Bidirectional DShot was enabled in the earlier logs and disabled in the later on
 
 ## GNSS, IMU position and range sensor settings
 
-| Parameter | 09_44_48 | 12_10_01 | 12_43_50 |
+| Parameter | Initial Acro | Stabilized | Revised |
 | --- | ---: | ---: | ---: |
 | `EKF2_GPS_CTRL` | 15 | 7 | 15 |
 | `EKF2_RNG_CTRL` | 1 | 1 | 1 |
@@ -75,4 +75,4 @@ These are **recorded snapshots**, not a step-by-step record of every adjustment 
 
 To make a proper tuning comparison, I need a matching flight log, the exact old and new parameters, similar test manoeuvres, and notes about vibration, tracking, oscillation and ESC temperature. I will keep future changes in [the parameter-change template](parameter-change-template.md).
 
-The raw ULogs are not uploaded because they may contain GNSS positions and other system information. Selected parameter snapshots are in [configs](../configs/README.md). **Do not import these historical values as a flight-ready configuration.**
+The raw flight recordings are kept private because they may contain GNSS positions and system information. Selected parameters are available in [configuration snapshots](../configs/README.md). **These are historical measurements, not a flight-ready configuration.**
