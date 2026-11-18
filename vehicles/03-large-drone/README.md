@@ -21,6 +21,14 @@ I used PX4 and QGroundControl for the airframe and sensor configuration. During 
 
 I also checked the PID and IMU filtering, motor/ESC behaviour and the battery monitoring parameters using PX4 flight logs. One recent flight log reported an ESC temperature that was higher than the others. I am also checking intermittent video loss when video and telemetry are transmitted over the same RF link.
 
+## PX4 control and tuning work
+
+I did not stop after getting the drone into the air. I studied the rate and attitude loops, PID gain changes, gyro filtering, vibration frequency and motor RPM feedback using the actual ULogs. The saved parameters show that the controller configuration changed across the flights, including the overall rate gains, D terms, attitude gains, gyro cutoffs and dynamic notch settings.
+
+The 4 November logs showed strong gyro vibration near 130–150 Hz and unreliable RPM reports on ESC 2 and 3. The 14 November log contains a later set of gains and filters, but I still need a controlled test to show which changes actually helped. I am keeping both the progress and the unresolved issues in the documentation.
+
+[PX4 controller explanation](../../docs/px4-control-system.md) · [Real parameter history](../../docs/px4-tuning-history.md) · [Vibration and RPM investigation](../../docs/px4-gyro-filter-investigation.md)
+
 ## Hardware known from the recent PX4 log
 
 | Item | Information |

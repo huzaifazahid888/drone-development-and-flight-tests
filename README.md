@@ -22,6 +22,14 @@ The first work was mostly hardware assembly and learning how the flight controll
 
 On the current large drone I am also looking at battery voltage sag, current measurements, ESC temperatures, and interruptions in the live video sent over the same RF link as telemetry. I have kept these issues in the documentation since they are still useful parts of the testing.
 
+## PX4 control and tuning findings
+
+A large part of this project was understanding PX4's cascaded attitude and rate controllers and learning how to tune them using actual flight data. I checked PID gains, gyro filtering, motor RPM telemetry, GNSS/EKF2 settings and how these affect the behaviour of the drone. I also kept the problems we found, including strong motor-frequency vibration and unreliable RPM reports on some ESC channels.
+
+The [parameter history](docs/px4-tuning-history.md) contains real settings extracted from three FMUv6X logs recorded on 4 and 14 November 2026. It shows the changes in rate gains, D terms, attitude gains, gyro cutoffs, dynamic notch settings, DShot telemetry and GNSS offsets. These are historical records, not universal tuning recommendations.
+
+[How PX4 control works](docs/px4-control-system.md) · [Actual parameter changes](docs/px4-tuning-history.md) · [Gyro vibration and ESC RPM findings](docs/px4-gyro-filter-investigation.md) · [Tuning workflow](docs/tuning-and-logs.md)
+
 ## Flight videos and test records
 
 I will add actual videos from different flights and ranges. Each flight will have its own record with the drone used, test conditions and the result. I will only write a flight distance or range when it has been checked from a record or confirmed separately.
@@ -42,7 +50,10 @@ These video filenames are reserved for files I will upload later. They are not l
 - [Hardware setup](docs/hardware.md)
 - [PX4 and QGroundControl calibration](docs/setup-and-calibration.md)
 - [GNSS and EKF2](docs/gnss-and-ekf2.md)
-- [PID tuning, filtering and flight logs](docs/tuning-and-logs.md)
+- [PX4 controller architecture](docs/px4-control-system.md)
+- [PX4 tuning and parameter history](docs/px4-tuning-history.md)
+- [Gyro filtering, vibration and ESC RPM investigation](docs/px4-gyro-filter-investigation.md)
+- [PID tuning workflow and flight logs](docs/tuning-and-logs.md)
 - [Battery and power measurements](docs/battery-and-power.md)
 - [ESC temperature checks](docs/esc-temperature.md)
 - [RF video and telemetry](docs/video-and-telemetry.md)
