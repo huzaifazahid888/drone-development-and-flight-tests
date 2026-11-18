@@ -1,0 +1,19 @@
+# Raw flight logs may contain position and other details
+*.ulg
+*.tlog
+*.bag
+*.db3
+
+# Local outputs
+output/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
