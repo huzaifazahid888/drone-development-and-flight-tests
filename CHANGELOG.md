@@ -15,3 +15,7 @@ The hardware specifications, flight ranges and unresolved RF and temperature iss
 - Documented the 130–150 Hz gyro vibration and ESC 2/3 RPM telemetry issues.
 - Added the two 4 November flight records and selected historical parameter snapshots.
 - Linked the tuning work from the main README and large-drone page.
+
+## Drone photo update
+
+I added the three drone overview photos with white backgrounds, linked them from the main README and recorded the first Pixhawk 2.4.8 setup and the later STM32H7-based Pixhawk development stage. The exact model numbers for the later controllers still need to be checked from the hardware.

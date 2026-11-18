@@ -10,9 +10,8 @@ Some early notes mention a 6-inch Mark 4 frame and Emax 2306 1800KV motors. I wi
 
 ## Photos
 
-I will upload these files to [the photo folder](../../media/photos/README.md):
+The [overview photo](../../media/photos/small-drone-overview.jpg) is now added. I will upload more detailed hardware pictures later:
 
-- `small-drone-overview.jpg`: full assembled drone
 - `small-drone-assembly.jpg`: frame, motors and wiring
 - `small-drone-pixhawk.jpg`: flight controller mounting, if available
 

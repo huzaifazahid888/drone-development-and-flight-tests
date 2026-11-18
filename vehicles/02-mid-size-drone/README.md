@@ -6,9 +6,10 @@ After the small drone, I worked on another quadcopter with a bigger frame. In th
 
 I want to keep its hardware, setup and flight results separate so it is easy to see how the design changed from the first drone.
 
-## Photos to add
+## Photos
 
-- `mid-size-drone-overview.jpg`: full assembled drone
+The [overview photo](../../media/photos/mid-size-drone-overview.jpg) is added. I will upload the remaining pictures later:
+
 - `mid-size-drone-assembly.jpg`: frame and component placement
 - `mid-size-drone-pixhawk.jpg`: flight controller and wiring, if available
 

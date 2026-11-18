@@ -6,9 +6,10 @@ This is the current and largest drone in my project. The approximate overall fra
 
 My recent work has been around PX4 setup, GNSS and EKF2, motor and ESC feedback, battery monitoring, flight logs and a sight/camera system that uses a shared RF link for live video and telemetry.
 
-## Photos to add
+## Photos
 
-- `large-drone-overview.jpg`: assembled drone, full view
+The [overview photo](../../media/photos/large-drone-overview.jpg) is added. I will upload the other views later:
+
 - `large-drone-top-view.jpg`: top view showing the frame and component placement
 - `large-drone-side-view.jpg`: side view, including battery mounting
 - `large-drone-pixhawk.jpg`: flight controller mounting
