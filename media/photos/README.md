@@ -1,6 +1,6 @@
 # Drone photos
 
-I will add the original pictures of all three drones. Please use these exact names so they match the documentation.
+I have added the overview photos of all three drone stages on a white background. I will add the remaining hardware close-ups after sorting them. Please keep the filenames below so they match the documentation.
 
 | Drone | Filename | What the picture will show |
 | --- | --- | --- |
@@ -17,4 +17,4 @@ I will add the original pictures of all three drones. Please use these exact nam
 | Large | `large-drone-gnss.jpg` | GNSS antenna |
 | Large | `large-drone-sight-rf.jpg` | Sight and RF hardware, if suitable to share |
 
-There are no photos uploaded yet. JPEG filenames are used here; if the original file is PNG I will update the reference after uploading it.
+The three overview images are uploaded. The other filenames are reserved for future photos. The edited white-background versions are for presentation, while the original images should be kept for technical inspection.

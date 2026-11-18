@@ -1,5 +1,7 @@
 # 03 - Large Quadcopter (736 mm × 615 mm)
 
+![03 - Large Quadcopter (736 mm × 615 mm)](../../media/photos/large-drone-overview.jpg)
+
 This is the current and largest drone in my project. The approximate overall frame dimensions are 736 mm × 615 mm.
 
 My recent work has been around PX4 setup, GNSS and EKF2, motor and ESC feedback, battery monitoring, flight logs and a sight/camera system that uses a shared RF link for live video and telemetry.

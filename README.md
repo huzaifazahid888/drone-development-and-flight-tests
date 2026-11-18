@@ -6,6 +6,15 @@ My work here includes motor and ESC configuration, Pixhawk and PX4 setup, QGroun
 
 This is an ongoing project. Some tests are completed and some problems still need checking. I will add the original photos and flight videos as I sort them.
 
+## Development photos
+
+The three photos below show how the drone hardware changed during development. I kept the original components and wiring visible while preparing white-background images for the repository.
+
+| Small quadcopter | Mid-size quadcopter | Current large quadcopter |
+| :---: | :---: | :---: |
+| ![Small quadcopter](media/photos/small-drone-overview.jpg) | ![Mid-size quadcopter](media/photos/mid-size-drone-overview.jpg) | ![Large quadcopter](media/photos/large-drone-overview.jpg) |
+| Early prototype | Pixhawk-based development and sensor integration | 736 × 615 mm platform |
+
 ## Drone development
 
 | Stage | Drone | Work |
@@ -14,7 +23,7 @@ This is an ongoing project. Some tests are completed and some problems still nee
 | 2 | [Mid-size quadcopter](vehicles/02-mid-size-drone/README.md) | Next airframe, configuration and testing |
 | 3 | [Large quadcopter, 736 × 615 mm](vehicles/03-large-drone/README.md) | Current work with PX4, battery/ESC logs, GNSS and video telemetry |
 
-**Photos to add:** `media/photos/small-drone-overview.jpg`, `media/photos/mid-size-drone-overview.jpg`, and `media/photos/large-drone-overview.jpg`. I will use these exact filenames in the repository. The pictures are not uploaded yet.
+**Photos:** The three overview photos are now added. I will add more detailed hardware pictures and flight videos after sorting the original files.
 
 ## Work and testing
 

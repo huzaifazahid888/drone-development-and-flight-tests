@@ -1,6 +1,8 @@
 # 02 - Mid-Size Quadcopter
 
-After the small drone, I worked on another quadcopter with a bigger frame. This was the second stage before moving to the current 736 mm × 615 mm drone.
+![02 - Mid-Size Quadcopter](../../media/photos/mid-size-drone-overview.jpg)
+
+After the small drone, I worked on another quadcopter with a bigger frame. In the next stage I moved from Pixhawk 2.4.8 to a more advanced Pixhawk variant based on an STM32H7 microcontroller. I made this change as part of developing the flight control and communication setup for longer-range testing. A faster controller gives more processing headroom, but the actual flight range also depends on the radio link, battery, antennas and the complete aircraft.
 
 I want to keep its hardware, setup and flight results separate so it is easy to see how the design changed from the first drone.
 
@@ -22,7 +24,7 @@ I will add the flight distances, dates and the test result after matching each v
 | Item | Details |
 | --- | --- |
 | Frame size | Mid-size, measured dimensions to add |
-| Flight controller | To confirm |
+| Flight controller | STM32H7-based Pixhawk variant, exact model to confirm |
 | Motors and ESCs | To confirm |
 | Propellers | To confirm |
 | Battery | To confirm |
