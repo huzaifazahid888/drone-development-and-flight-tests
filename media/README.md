@@ -2,7 +2,7 @@
 
 This folder is for the actual pictures and videos of the three drones. I will use the filenames already mentioned in the README so that the correct media appears with each build.
 
-The photos are not added yet. The image and video names in the documents are reserved names, not fabricated media.
+Overview photos of all three drones are now available. Additional image names and all video names are reserved for media that will be added after verification.
 
 [Photo filenames](photos/README.md) · [Video filenames](videos/README.md)
 

@@ -1,4 +1,4 @@
-# Flight record - [date or log name]
+# Flight test - [purpose or test type]
 
 **Drone:** small / mid-size / large  
 **Date:**  
@@ -8,7 +8,7 @@
 **Flight mode:**  
 **Approximate duration:**  
 **Range or distance, if verified:**  
-**ULog filename:**  
+**Flight data saved locally:** Yes / No  
 **Video filename or URL:**  
 
 ## Purpose

@@ -9,4 +9,4 @@ I also want to add the exact motor, ESC, propeller, GNSS, RF and camera models, 
 I will update the pages as the testing continues instead of writing a final result before I have checked it.
 ## Control and filter validation
 
-I also need to repeat a controlled flight with the later 14 November PID and filter settings, verify the ESC RPM telemetry source, and compare raw gyro spectra and rate tracking with similar manoeuvres. I want to confirm the physical GNSS/IMU positions against the saved EKF2 offsets, and record the old and new values for each future parameter change. This is necessary before I can call the tuning complete.
+I also need to repeat a controlled flight with the revised PID and filter settings, verify the ESC RPM telemetry source, and compare raw gyro spectra and rate tracking with similar manoeuvres. I want to confirm the physical GNSS/IMU positions against the saved EKF2 offsets, and record the old and new values for each future parameter change. This is necessary before I can call the tuning complete.

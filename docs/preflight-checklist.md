@@ -11,6 +11,6 @@ This is the checklist I want to use before each flight, mainly to avoid mixing t
 - [ ] Wait for the required sensor and EKF2 health checks.
 - [ ] Check the sight and RF link where fitted.
 - [ ] Confirm the test area is safe and clear.
-- [ ] Record the test purpose and log filename.
+- [ ] Record the test purpose and confirm flight-data logging is enabled.
 
 After the flight I will check battery behaviour, the ESC and motor temperatures and any warnings, then save the test video and relevant notes. All powered motor tests without propellers will be done with the aircraft secured.

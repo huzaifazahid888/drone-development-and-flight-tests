@@ -4,7 +4,7 @@
 
 I organized my quadcopter work into three stages: small drone, mid-size drone and the current 736 × 615 mm drone.
 
-I added the current PX4 setup notes, battery and ESC observations and flight record from `12_43_50.ulg`. I also created fixed filenames for the photos and videos that I will upload later.
+I added the current PX4 setup notes, battery and ESC observations and a recorded flight-test analysis. I also prepared the media folders and test records for adding photos and videos.
 
 The hardware specifications, flight ranges and unresolved RF and temperature issues will be updated when the real evidence is added.
 
@@ -16,6 +16,10 @@ The hardware specifications, flight ranges and unresolved RF and temperature iss
 - Added the two 4 November flight records and selected historical parameter snapshots.
 - Linked the tuning work from the main README and large-drone page.
 
-## Drone photo update
+## Drone photos and technical documentation
 
 I added the three drone overview photos with white backgrounds, linked them from the main README and recorded the first Pixhawk 2.4.8 setup and the later STM32H7-based Pixhawk development stage. The exact model numbers for the later controllers still need to be checked from the hardware.
+
+## Flight-test documentation update
+
+I replaced raw recording names in the public documentation with descriptive test titles. The measured findings and recorded controller settings remain available, but each result is now explained by the test purpose and observation rather than a file identifier.

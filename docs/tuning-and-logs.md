@@ -1,4 +1,4 @@
-# PID tuning, filtering and ULog checks
+# PX4 PID tuning and flight-data analysis
 
 I started by learning the PX4 control structure. The attitude controller gives a requested angular rate, and the rate PID controller tries to follow it using gyro feedback. The motor commands are generated after control allocation. I needed to understand these parts before deciding whether a problem came from the PID gains, vibration, motor response or the estimator.
 
@@ -25,8 +25,8 @@ I also check the estimator, gyro/accelerometer clipping, motor saturation, batte
 - [How the PX4 control loops work](px4-control-system.md)
 - [Actual parameters from three flight logs](px4-tuning-history.md)
 - [130–150 Hz vibration and ESC RPM problem](px4-gyro-filter-investigation.md)
-- [4 November Acro flight](flight-records/09_44_48.md)
-- [4 November Stabilized flight](flight-records/12_10_01.md)
-- [14 November later flight](flight-records/12_43_50.md)
+- [Initial Acro control test](flight-records/initial-acro-test.md)
+- [Stabilized control test](flight-records/stabilized-control-test.md)
+- [Revised controller test](flight-records/revised-control-test.md)
 - [Parameter-change template](parameter-change-template.md)
 - [ULog quick-check script](../scripts/README.md)

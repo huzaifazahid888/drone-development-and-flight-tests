@@ -28,7 +28,7 @@ I also checked the PID and IMU filtering, motor/ESC behaviour and the battery mo
 
 I did not stop after getting the drone into the air. I studied the rate and attitude loops, PID gain changes, gyro filtering, vibration frequency and motor RPM feedback using the actual ULogs. The saved parameters show that the controller configuration changed across the flights, including the overall rate gains, D terms, attitude gains, gyro cutoffs and dynamic notch settings.
 
-The 4 November logs showed strong gyro vibration near 130–150 Hz and unreliable RPM reports on ESC 2 and 3. The 14 November log contains a later set of gains and filters, but I still need a controlled test to show which changes actually helped. I am keeping both the progress and the unresolved issues in the documentation.
+The earlier flight tests showed strong gyro vibration near 130–150 Hz and unreliable RPM reports on ESC 2 and 3. A later test used revised gains and filters, but I still need a controlled comparison to show which changes actually helped. I am keeping both the progress and the unresolved issues in the documentation.
 
 [PX4 controller explanation](../../docs/px4-control-system.md) · [Real parameter history](../../docs/px4-tuning-history.md) · [Vibration and RPM investigation](../../docs/px4-gyro-filter-investigation.md)
 
@@ -51,8 +51,7 @@ The flight controller identity is taken from the log, not from a photograph of t
 - `large-drone-flight-01.mp4`: regular flight
 - `large-drone-flight-02.mp4`: another flight
 - `large-drone-range-test-01.mp4`: range test, if recorded
-- `12_43_50-flight.mp4`: video linked to the log only if the timestamps match
 
 The videos are not uploaded yet. I will add the actual tested ranges rather than writing estimated numbers.
 
-[Flight record from ULog 12_43_50](../../docs/flight-records/12_43_50.md) · [Battery notes](../../docs/battery-and-power.md) · [ESC temperature](../../docs/esc-temperature.md) · [Video and telemetry](../../docs/video-and-telemetry.md)
+[Revised controller flight test](../../docs/flight-records/revised-control-test.md) · [Battery notes](../../docs/battery-and-power.md) · [ESC temperature](../../docs/esc-temperature.md) · [Video and telemetry](../../docs/video-and-telemetry.md)

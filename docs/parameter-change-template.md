@@ -3,7 +3,7 @@
 **Drone:**  
 **Date:**  
 **PX4 version:**  
-**Flight log:**  
+**Related flight test:**  
 **Reason for the change:**
 
 | Parameter | Old value | New value | Why changed |
