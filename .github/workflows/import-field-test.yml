@@ -1,0 +1,41 @@
+name: Import edited UAV field-test video
+on:
+  push:
+    paths:
+      - .github/workflows/import-field-test.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-video:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble verified video
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p media/videos
+          output="media/videos/large-drone-field-test.mp4"
+          : > "$output"
+          for sha in 27787ab850baef3ce2e932bbc0ca0c473c397970 2eaf23acfc05308ea8c231b52bcd13d54744609f 4485145bb0aa8ace246d075265b3149a8a1e2769 5586e5cbccece2dcd51ce287f038d16db1e785e3 69430b7b1a585787e3f6586d960e54f316fd03a6 9f339e7772d760da3f4ed6a2bd14a9f51fd71b6e dca605d039b655a3cf3c3d5ca913dbfe1ba0885a 84e29a55d1d2d3539a8c28ff4d383102b09e0902 8dfbf7aa72a45ceec0d497143af67ab413325ea3 f02a41a826dca6ac86385b0025f65c0b2f707355 c0516b48c9a71ad3bd59a464c0bfca8e8d7dc33c 4393b58a6647c328f164340e1a8fadd8d42ae68d 686d836a604dd517ab93f85ea5990d57d2942eae f5b0ea8a71d7720fe33d0e2e295fefdb949e6014 b7d216d7fcd084513543b1856c9b955f1093abae
+          do
+            curl -fsSL --retry 3 \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/$GITHUB_REPOSITORY/git/blobs/$sha" \
+              | jq -r '.content' | base64 -d >> "$output"
+          done
+          echo "bea6401d621b53ec385bc152117a9fbc059632cf38c2324e565a9552f55c348c  $output" | sha256sum -c -
+          test "$(stat -c%s "$output")" -eq 30282794
+      - name: Commit field-test footage
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/videos/large-drone-field-test.mp4
+          git commit -m "Add edited large-drone field-test video"
+          git push
